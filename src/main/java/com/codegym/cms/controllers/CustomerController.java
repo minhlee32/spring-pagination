@@ -1,8 +1,6 @@
 package com.codegym.cms.controllers;
 
 import com.codegym.cms.models.Customer;
-import com.codegym.cms.repositories.CustomerRepository;
-import com.codegym.cms.repositories.impl.CustomerRepositoryImpl;
 import com.codegym.cms.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,7 +35,7 @@ public class CustomerController {
 
     @GetMapping("/customers")
     public ModelAndView listCustomers(){
-        List<Customer> customers = customerService.findAll();
+        Iterable<Customer> customers = customerService.findAll();
         ModelAndView modelAndView = new ModelAndView("/customer/list");
         modelAndView.addObject("customers", customers);
         return modelAndView;
