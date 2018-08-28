@@ -1,7 +1,9 @@
 package com.codegym.cms.controllers;
 
 import com.codegym.cms.models.Customer;
+import com.codegym.cms.models.Province;
 import com.codegym.cms.services.CustomerService;
+import com.codegym.cms.services.ProvinceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +18,14 @@ import java.util.List;
 public class CustomerController {
     @Autowired
     private CustomerService customerService;
+
+    @Autowired
+    private ProvinceService provinceService;
+
+    @ModelAttribute("provinces")
+    public Iterable<Province> provinces(){
+        return provinceService.findAll();
+    }
 
     @GetMapping("/create-customer")
     public ModelAndView showCreateForm(){
