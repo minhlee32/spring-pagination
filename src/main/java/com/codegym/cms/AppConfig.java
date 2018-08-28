@@ -5,6 +5,7 @@ import com.codegym.cms.repositories.impl.CustomerRepositoryImpl;
 import com.codegym.cms.services.CustomerService;
 import com.codegym.cms.services.impl.CustomerServiceImpl;
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
@@ -23,12 +24,14 @@ import org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
 @EnableWebMvc
-//@EnableTransactionManagement
+@EnableTransactionManagement
 @ComponentScan("com.codegym.cms")
 public class AppConfig extends WebMvcConfigurerAdapter implements ApplicationContextAware {
     private ApplicationContext applicationContext;
@@ -61,6 +64,13 @@ public class AppConfig extends WebMvcConfigurerAdapter implements ApplicationCon
         viewResolver.setTemplateEngine(templateEngine());
         return viewResolver;
     }
+
+    @Bean
+    @Qualifier(value = "entityManager")
+    public EntityManager entityManager(EntityManagerFactory entityManagerFactory) {
+        return entityManagerFactory.createEntityManager();
+    }
+
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
@@ -89,14 +99,14 @@ public class AppConfig extends WebMvcConfigurerAdapter implements ApplicationCon
         return properties;
     }
 
-//
-//    @Bean
-//    public CustomerRepository customerRepository(){
-//        return new CustomerRepositoryImpl();
-//    }
-//
-//    @Bean
-//    public CustomerService customerService(){
-//        return new CustomerServiceImpl();
-//    }
+
+    @Bean
+    public CustomerRepository customerRepository(){
+        return new CustomerRepositoryImpl();
+    }
+
+    @Bean
+    public CustomerService customerService(){
+        return new CustomerServiceImpl();
+    }
 }
