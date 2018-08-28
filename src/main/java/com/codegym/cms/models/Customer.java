@@ -50,12 +50,6 @@ public class Customer {
     @JoinColumn(name = "province_id")
     private Province province;
 
-    public Customer(String firstName, String lastName, Province province) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.province = province;
-    }
-
     public Province getProvince() {
         return province;
     }
