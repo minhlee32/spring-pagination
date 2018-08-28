@@ -5,6 +5,7 @@ import com.codegym.cms.repositories.CustomerRepository;
 import com.codegym.cms.services.CustomerService;
 import com.codegym.cms.services.ProvinceService;
 import com.codegym.cms.services.impl.CustomerServiceImpl;
+import com.codegym.cms.services.impl.ProvinceServiceImpl;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -52,6 +53,11 @@ public class AppConfig extends WebMvcConfigurerAdapter implements ApplicationCon
     @Bean
     public CustomerService customerService(){
         return new CustomerServiceImpl();
+    }
+
+    @Bean
+    public ProvinceService provinceService() {
+        return new ProvinceServiceImpl();
     }
 
 
