@@ -1,5 +1,9 @@
 package com.codegym.cms;
 
+import com.codegym.cms.repositories.CustomerRepository;
+import com.codegym.cms.repositories.impl.CustomerRepositoryImpl;
+import com.codegym.cms.services.CustomerService;
+import com.codegym.cms.services.impl.CustomerServiceImpl;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -17,7 +21,7 @@ import org.thymeleaf.templatemode.TemplateMode;
 
 @Configuration
 @EnableWebMvc
-@EnableTransactionManagement
+//@EnableTransactionManagement
 @ComponentScan("com.codegym.cms")
 public class AppConfig extends WebMvcConfigurerAdapter implements ApplicationContextAware {
     private ApplicationContext applicationContext;
@@ -50,4 +54,14 @@ public class AppConfig extends WebMvcConfigurerAdapter implements ApplicationCon
         viewResolver.setTemplateEngine(templateEngine());
         return viewResolver;
     }
+//
+//    @Bean
+//    public CustomerRepository customerRepository(){
+//        return new CustomerRepositoryImpl();
+//    }
+//
+//    @Bean
+//    public CustomerService customerService(){
+//        return new CustomerServiceImpl();
+//    }
 }
