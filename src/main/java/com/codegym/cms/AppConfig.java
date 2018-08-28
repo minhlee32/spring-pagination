@@ -1,16 +1,17 @@
 package com.codegym.cms;
 
 import com.codegym.cms.repositories.CustomerRepository;
-import com.codegym.cms.repositories.impl.CustomerRepositoryImpl;
 import com.codegym.cms.services.CustomerService;
 import com.codegym.cms.services.impl.CustomerServiceImpl;
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
@@ -34,6 +35,7 @@ import java.util.Properties;
 @Configuration
 @EnableWebMvc
 @EnableTransactionManagement
+@EnableJpaRepositories("com.codegym.cms.repositories")
 @ComponentScan("com.codegym.cms")
 public class AppConfig extends WebMvcConfigurerAdapter implements ApplicationContextAware {
 
@@ -42,11 +44,6 @@ public class AppConfig extends WebMvcConfigurerAdapter implements ApplicationCon
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         this.applicationContext = applicationContext;
-    }
-
-    @Bean
-    public CustomerRepository customerRepository(){
-        return new CustomerRepositoryImpl();
     }
 
     @Bean
