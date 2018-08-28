@@ -2,7 +2,6 @@ package com.codegym.cms.services.impl;
 
 import com.codegym.cms.models.Customer;
 import com.codegym.cms.repositories.CustomerRepository;
-import com.codegym.cms.repositories.impl.CustomerRepositoryImpl;
 import com.codegym.cms.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 
