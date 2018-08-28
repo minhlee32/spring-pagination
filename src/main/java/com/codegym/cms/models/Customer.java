@@ -45,4 +45,22 @@ public class Customer {
     public String toString() {
         return String.format("Customer[id=%d,firstName='%s',lastName='%s']", id, firstName, lastName);
     }
+
+    @ManyToOne
+    @JoinColumn(name = "province_id")
+    private Province province;
+
+    public Customer(String firstName, String lastName, Province province) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.province = province;
+    }
+
+    public Province getProvince() {
+        return province;
+    }
+
+    public void setProvince(Province province) {
+        this.province = province;
+    }
 }
