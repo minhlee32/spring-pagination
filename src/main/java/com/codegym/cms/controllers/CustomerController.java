@@ -1,7 +1,10 @@
 package com.codegym.cms.controllers;
 
 import com.codegym.cms.models.Customer;
+import com.codegym.cms.repositories.CustomerRepository;
 import com.codegym.cms.repositories.impl.CustomerRepositoryImpl;
+import com.codegym.cms.services.CustomerService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -13,7 +16,8 @@ import java.util.List;
 
 @Controller
 public class CustomerController {
-    private CustomerRepositoryImpl customerService;
+    @Autowired
+    private CustomerService customerService;
 
     @GetMapping("/create-customer")
     public ModelAndView showCreateForm(){
